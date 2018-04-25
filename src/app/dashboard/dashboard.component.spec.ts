@@ -1,6 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import {DashboardComponent} from './dashboard.component';
+import {APP_BASE_HREF} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {AppRoutingModule} from '../app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {HeroesComponent} from '../heroes/heroes.component';
+import {HeroDetailComponent} from '../hero-detail/hero-detail.component';
+import {HeroService} from '../hero.service';
+import {MessageService} from '../message.service';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,9 +18,25 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [
+        DashboardComponent,
+        HeroesComponent,
+        HeroDetailComponent
+      ],
+      imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule
+      ],
+      providers: [
+        {provide: APP_BASE_HREF, useValue: '/'},
+        HeroService,
+        MessageService
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -32,9 +32,10 @@ describe('AppComponent', () => {
         AppRoutingModule,
         HttpClientModule,
         HttpClientInMemoryWebApiModule
+
       ],
       providers: [
-        {provide: APP_BASE_HREF, useValue : '/' },
+        {provide: APP_BASE_HREF, useValue: '/'},
         HeroService,
         MessageService,
         InMemoryDataService

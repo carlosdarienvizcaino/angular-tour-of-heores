@@ -6,6 +6,11 @@ node_modules
 /dist-server
 /tmp
 /out-tsc
+package.tgz
+
+# ssh keys
+/deploy_key
+deploy/
 
 # dependencies
 /node_modules

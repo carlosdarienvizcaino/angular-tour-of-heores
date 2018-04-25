@@ -1,22 +1,32 @@
----
 language: node_js
-
 node_js:
-  - "7"
-
-script:
-  - "ng test"
-
+- 6.9.1
+notifications:
+  email:
+    recipients:
+    - biscayne3@gmail.com
+    on_failure: always
+    on_success: always
+addons:
+  ssh_known_hosts:
+  - 159.89.189.38
 branches:
   only:
-    - master
-    - dev
-
-before_script:
-  - "npm install -g @angular/cli"
-
-deploy:
-  - "ng build -prod"
-
-
-
+  - master
+  - dev
+env:
+  global:
+  - REMOTE_APP_DIR=/var/www/html
+  - REMOTE_USER=root
+  - REMOTE_HOST=159.89.189.38
+  - PORT=8080
+  - secure: RQcvJWBF6hl2QoQW8znVVQTcxbseEEySZqi1IkWJiWp2xjcGx2K9huIbWml9Mu6p61/zY1pRsj9pz48qAed7WxvOssj1XXYWM/4TOOIp0TdZrT2FjmmcN8UliE0cKGC1b+cVxDOuxk6Y8E31hgSKxImmV9TWNrDkLxbYCnXdy137lbz+hNgpG9K9zs8Vj6wTxOmpsqLfrhRzdLD8pMhZf+Ofi6psUA/S89kXnTMRZTq72dcGL9wUsj+KH1gaJfOUybPTaH3GXB0geBvgF0IGzYOYEsQEHqOK+c0ttqLCuNjKjRwumB0KxpD/zBzQhrGsAaqbz0A4cTpQ9yR9OQZRnqRLyn6OHx+7TqOQbiAKI3r99I8zk3waTFspw7JqzW0nw11qRA6h6T7+qPkf5JYf9HHvnBrkNtvp4R7TKUqiYUTwuspbMX/rG1BrQQz6ZTusJv4vTjtcDSKvg58av1VCaoEFl26z7Lk+ibt+rDgY3ilGkSh3qG+ni4iVR7Z3q5RMA6Qo8Lddkag8/1L1XQDdLF7NzSTi6qPBCTZuUdLGhioS3JuubDwmmqWNGaMbO0tw0bflDFLCWUZ222RE85P5EICYVo25Qji630tMofHLv9zHI5CiUuhNSk27HIFCvCIYuEoKOfVVCOxISBGg4PKC0P5O1ZN2cZhkn4MLfk6E2hM=
+before_install:
+- openssl aes-256-cbc -K $encrypted_23768b6c3faf_key -iv $encrypted_23768b6c3faf_iv
+  -in deploy_key.enc -out deploy_key -d
+- if [$TRAVIS_BRANCH == 'master']; then chmod 600 deploy_key; mv deploy_key ~/.ssh/id_rsa; fi
+script:
+- ng build
+- if [$TRAVIS_BRANCH == 'master']; then chmod 0700 scripts/travis_script.sh; scripts/deploy.sh; fi
+after_success:
+- echo "Done"

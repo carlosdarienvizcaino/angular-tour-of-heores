@@ -1,0 +1,9 @@
+Host thecoinwatcher
+Hostname 159.89.188.102
+PubKeyAuthentication yes
+IdentityFile /Users/carlosvi/workspace/crypto/keys
+
+Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa

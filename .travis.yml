@@ -27,6 +27,6 @@ before_install:
 - if [$TRAVIS_BRANCH == 'master']; then chmod 600 deploy_key; mv deploy_key ~/.ssh/id_rsa; fi
 script:
 - ng build
-- if [$TRAVIS_BRANCH == 'master']; then chmod 0700 scripts/travis_script.sh; scripts/deploy.sh; fi
+- if [$TRAVIS_BRANCH == 'master']; then  echo 'Started Deploymnet'; chmod 0700 scripts/travis_script.sh; ./scripts/deploy.sh; fi
 after_success:
 - echo "Done"

@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
+# Project Purpose
+Refresh Angular knowledge by following Angular's Tour of Heroes tutorial. Also, learn how to integtrate TravisCI with Git and deploy code changes to the host server. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

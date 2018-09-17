@@ -1,0 +1,7 @@
+version: '3'
+services:
+  angular-tour-of-heroes:
+    image: dev/angular-tour-of-heroes
+    restart: always
+    ports:
+     - "4200:8080"

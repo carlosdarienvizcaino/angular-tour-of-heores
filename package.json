@@ -4,8 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node dist/server.js",
+    "start": "PORT=8080 node dist/server.js",
+    "start-dev": "node dist/server.js",
     "build": "ng build && cp server.js dist/",
+    "docker-build": "npm run build && docker build -t dev/angular-tour-of-heroes .",
+    "docker-up": "docker-compose up -d",
+    "docker-down": "docker-compose down",
+    "docker-restart": "npm run docker-down && npm run docker-build && npm run docker-up",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
